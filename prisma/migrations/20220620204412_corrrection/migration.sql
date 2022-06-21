@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "contacts" ALTER COLUMN "lastname" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "goals" ALTER COLUMN "startDate" SET DATA TYPE TEXT,
+ALTER COLUMN "endDate" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "tasks" ALTER COLUMN "date" SET DATA TYPE TIMESTAMP(3);
