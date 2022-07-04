@@ -12,7 +12,7 @@ class CreateContactController{
         const contact = await createContactService.execute({id_user, name, lastname, email,
             phoneNumber});
 
-        return contact;
+            return res.json({contact})
     }
 }
 

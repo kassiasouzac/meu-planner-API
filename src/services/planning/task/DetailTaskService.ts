@@ -1,12 +1,17 @@
 import prismaClient from "../../../prisma"
 
+interface DetailRequest{
+    taskId: string;
+}
+
 class DetailTaskService{
-    async execute(task_id: string){
-        const task = await prismaClient.task.findFirst({
+    async execute({taskId}: DetailRequest){
+        const task = await prismaClient.task.findMany({
             where:{
-                id: task_id
+                id: taskId
             },
             select:{
+                id: true,
                 title: true,
                 description: true,
                 date: true,

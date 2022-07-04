@@ -26,7 +26,6 @@ class CreateHabitService{
                 categoryId: categoryId,
                 planningId: planningId,
                 frequency:[{
-                    month: "",
                     days:[]
                 }]
             }

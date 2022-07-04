@@ -3,13 +3,13 @@ import { DetailEventService} from "../../../services/planning/event/DetailEventS
 
 class DetailEventController{
     async handle(req: Request, res: Response){
-        const event_id = req.body;
+        const eventId = req.query.eventId as string;
+        
+        const detailEventService = new DetailEventService;
 
-        const detailEventService = new DetailEventService();
+        const event = await detailEventService.execute({eventId});
 
-        const event = await detailEventService.execute(event_id);
-
-        return res.json({event});
+        return res.json(event);
     }
 }
 

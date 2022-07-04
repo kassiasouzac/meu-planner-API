@@ -1,14 +1,21 @@
 import prismaClient from "../../../prisma"
 
+interface DetailRequest{
+    habitId: string;
+}
+
 class DetailHabitService{
-    async execute(habit_id: string){
-        const habit = await prismaClient.habit.findFirst({
+    async execute({habitId}: DetailRequest){
+        const habit = await prismaClient.habit.findMany({
             where:{
-                id: habit_id
+                id: habitId
             },
             select:{
+                id: true,
                 title: true,
                 motivation: true,
+                categoryId: true,
+                created_at:true,
                 frequency: true
             }
         })

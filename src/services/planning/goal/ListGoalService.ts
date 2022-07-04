@@ -4,12 +4,19 @@ class ListGoalService{
     async execute(){
         const goal = await prismaClient.goal.findMany({
             select:{
-                id:true,
+                id: true,
                 title: true,
                 description: true,
                 startDate: true,
                 endDate: true,
                 categoryId: true,
+                steps:{
+                    select:{
+                        id:true,
+                        number: true,
+                        value: true
+                    }
+                }
             }
         })
 

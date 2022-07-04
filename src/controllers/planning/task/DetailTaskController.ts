@@ -3,13 +3,13 @@ import { DetailTaskService} from "../../../services/planning/task/DetailTaskServ
 
 class DetailTaskController{
     async handle(req: Request, res: Response){
-        const task_id = req.body;
+        const taskId = req.query.taskId as string;
 
-        const detailTaskService = new DetailTaskService();
+        const detailTaskService = new DetailTaskService;
 
-        const task = await detailTaskService.execute(task_id);
+        const task = await detailTaskService.execute({taskId});
 
-        return res.json({task});
+        return res.json(task);
     }
 }
 

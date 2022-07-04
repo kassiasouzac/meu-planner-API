@@ -3,13 +3,13 @@ import { DetailHabitService} from "../../../services/planning/habit/DetailHabitS
 
 class DetailHabitController{
     async handle(req: Request, res: Response){
-        const habit_id = req.body;
+        const habitId = req.query.habitId as string;
 
-        const detailHabitService = new DetailHabitService();
+        const detailHabitService = new DetailHabitService;
 
-        const habit = await detailHabitService.execute(habit_id);
+        const habit = await detailHabitService.execute({habitId});
 
-        return res.json({habit});
+        return res.json(habit);
     }
 }
 

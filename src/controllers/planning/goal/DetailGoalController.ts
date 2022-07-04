@@ -3,13 +3,13 @@ import { DetailGoalService} from "../../../services/planning/goal/DetailGoalServ
 
 class DetailGoalController{
     async handle(req: Request, res: Response){
-        const goal_id = req.body;
+        const goalId = req.query.goalId as string;
 
-        const detailGoalService = new DetailGoalService();
+        const detailGoalService = new DetailGoalService;
 
-        const goal = await detailGoalService.execute(goal_id);
+        const goal = await detailGoalService.execute({goalId});
 
-        return res.json({goal});
+        return res.json(goal);
     }
 }
 

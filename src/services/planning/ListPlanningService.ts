@@ -15,7 +15,9 @@ class ListPlanningService{
                     select:{
                         id: true,
                         categoryId: true,
-                        title: true
+                        title: true,
+                        frequency: true,
+                        created_at: true
                     }
                 },
                 tasks: {
@@ -23,22 +25,36 @@ class ListPlanningService{
                         id: true,
                         categoryId: true,
                         title: true,
-                        date: true
+                        date: true,
+                        description: true
                     }
                 },
                 events: {
                     select:{
-                        id: true,
-                        categoryId: true,
+                        id:true,
                         title: true,
-                        date: true
+                        description: true,
+                        date: true,
+                        time: true,
+                        categoryId: true,
+                        extendedLocalization: true,
+                        repeat: true
                     }
                 },
                 goals: {
                     select:{
                         id: true,
+                        title: true,
+                        description: true,
+                        startDate: true,
+                        endDate: true,
                         categoryId: true,
-                        title: true
+                        steps:{
+                            select:{
+                                number: true,
+                                value: true
+                            }
+                        }
                     }
                 }
             }

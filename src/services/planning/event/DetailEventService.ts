@@ -1,12 +1,27 @@
+import { prisma } from "@prisma/client";
 import prismaClient from "../../../prisma"
 
+interface DetailRequest{
+    eventId: string;
+}
+
 class DetailEventService{
-    async execute(event_id){
+    async execute({eventId}: DetailRequest){
+        const thereIsAEvent = await prismaClient.event.findMany({
+            where:{
+                id: eventId
+            }
+        })
+        if(!thereIsAEvent){
+            throw new Error('Evento não existe!');
+        }
+
         const event = await prismaClient.event.findFirst({
             where:{
-                id: event_id
+                id: eventId
             },
             select:{
+                id:true,
                 title: true,
                 description: true,
                 date: true,

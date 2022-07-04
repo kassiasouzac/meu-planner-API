@@ -92,8 +92,8 @@ model Event {
   id String @id @default(uuid())
   title String
   description String
-  date String
-  time String
+  date DateTime @db.Date
+  time DateTime @db.Time()
   extendedLocalization Json?
   repeat Json?
 
@@ -112,9 +112,10 @@ model Goal{
   id String @id @default(uuid())
   title String
   description String
-  startDate String
-  endDate String
-
+  startDate DateTime @db.Date
+  endDate DateTime @db.Date
+  steps Step[]
+ 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
@@ -124,6 +125,19 @@ model Goal{
   planningId String
 
   @@map("goals")
+}
+
+model Step{
+  id String @id @default(uuid())
+  number Int
+  value String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  goal Goal @relation(fields: [goalId], references: [id])
+  goalId String
+
+   @@map("steps")
 }
 
 model Habit{
@@ -147,7 +161,7 @@ model Task{
   id String @id @default(uuid())
   title String
   description String
-  date DateTime
+  date DateTime @db.Date
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

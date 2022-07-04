@@ -3,8 +3,8 @@ import prismaClient from "../../../prisma";
 interface EventRequest{
     title: string,
     description: string,
-    date: string,
-    time: string,
+    date: Date,
+    time: Date,
     planningId: string,
     extendedLocalization:[{
         latitude:number,
@@ -13,7 +13,10 @@ interface EventRequest{
         longitudeDelta: number,
         address: string
     }],
-    repeat:[]
+    repeat:[
+        isOn: boolean,
+        frequency: string
+    ]
     categoryId: string
 }
 
