@@ -1,8 +1,15 @@
 import prismaClient from "../../../prisma";
 
+interface ListRequest{
+    planningId: string
+}
+
 class ListEventService{
-    async execute(){
+    async execute({planningId}: ListRequest){
         const event = await prismaClient.event.findMany({
+            where:{
+                planningId: planningId
+            },
             select:{
                 id:true,
                 title: true,

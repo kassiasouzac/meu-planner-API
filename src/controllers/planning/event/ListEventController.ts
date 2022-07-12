@@ -3,9 +3,11 @@ import { ListEventService } from "../../../services/planning/event/ListEventServ
 
 class ListEventController{
     async handle(req: Request, res: Response){
+        const  planningId  = req.query.planningId as string;
+
         const listEventService = new ListEventService();
 
-        const event = await listEventService.execute();
+        const event = await listEventService.execute({planningId});
 
         return res.json({event});
     }
